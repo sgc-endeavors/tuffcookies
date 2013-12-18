@@ -1,4 +1,18 @@
 Tuffcookies::Application.routes.draw do
+  
+  root :to => 'games#new'
+
+  resources :games
+  resources :players
+
+  # get "games/show"
+  # get "games/update"
+  # get "games/new"
+  # get "games/destroy"
+  # get "games/create"
+  # get "games/edit"
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

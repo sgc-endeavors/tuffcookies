@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe GamesController do
+describe PlayersController do
 
   describe "GET 'show'" do
     it "returns http success" do

@@ -1,0 +1,22 @@
+<h1>Tuff Cookies - Create a New Game</h1>
+<p>Find me in app/views/games/new.html.erb</p>
+
+< %= form_for(@new_game, url: games_path(@new_game)) do |f| %>
+	
+	< %= f.label :player_name, "Input Player Name", for: "player_name" %>
+	< %= f.text_field :player_name, id: "player_name" %>
+
+	<  %= submit_tag "Submit" %>
+
+< % end %>
+
+<br><br><br>
+
+<%= form_for(@new_game, url: games_path(@new_game)) do %>
+	
+	<%= label_tag :player_name, "Input Player Name" %>
+	<%= text_field_tag :player_name%>
+	<br>
+	<%= submit_tag "Submit" %>
+
+<% end %>
