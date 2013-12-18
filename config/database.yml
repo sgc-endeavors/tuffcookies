@@ -1,0 +1,23 @@
+development:
+  adapter: postgresql
+  host: localhost
+  database: tuffcookies_development
+  username: postgres
+  password: postgres
+  encoding: unicode
+          
+test:
+  adapter: postgresql
+  host: localhost
+  database: tuffcookies_test
+  username: postgres
+  password: postgres
+  encoding: unicode
+
+production:
+  adapter: postgresql
+  host: localhost
+  database: tuffcookies_production
+  username: postgres
+  password: postgres
+  encoding: unicode
