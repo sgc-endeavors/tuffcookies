@@ -54,5 +54,6 @@ group :development, :test do
   gem 'better_errors'
   gem 'capybara'
   gem 'shoulda-matchers'
+  gem 'devise'
   #gem 'mocha'
 end

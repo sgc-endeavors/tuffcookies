@@ -1,5 +1,11 @@
 require 'spec_helper'
 
 describe Player do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should belong_to(:game) }
+ 
+ it "has a valid factory" do
+ 	FactoryGirl.create(:player).should be_valid
+ end
+
+
 end

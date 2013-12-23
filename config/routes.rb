@@ -1,16 +1,17 @@
 Tuffcookies::Application.routes.draw do
   
-  root :to => 'games#new'
+  
+  devise_for :users
+
+  
+
+  root :to => 'players#show'
 
   resources :games
   resources :players
-
-  # get "games/show"
-  # get "games/update"
-  # get "games/new"
-  # get "games/destroy"
-  # get "games/create"
-  # get "games/edit"
+  resources :cards
+  resources :decks
+  
 
 
   # The priority is based upon order of creation:

@@ -2,5 +2,10 @@
 
 FactoryGirl.define do
   factory :player do
+    name "FactoryPlayer"
+    association :game
+    #game_id 1
+    player_order 1
+    player_correct_guesses 0
   end
 end
