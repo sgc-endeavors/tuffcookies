@@ -1,6 +1,15 @@
 # Use this hook to configure devise mailer, warden hooks and so forth.
 # Many of these configuration options can be set straight in your model.
 Devise.setup do |config|
+ 
+#ADDED in association w/ command line note received when running rake routes:  You have already activated rake 10.1.1, but your Gemfile requires rake 10.1.0. Using bundle exec may solve this.
+#  Devise.secret_key was not set. Please add the following to your Devise initializer:
+config.secret_key = '645d7641aff87d81491d78b9b4439be107c863f2ab51b9cca70b3e0cd9c388bfce82da2bca4be2943aa192c1340bda496522ab5192782ce4cca228cba042cc17'
+
+
+
+
+
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.

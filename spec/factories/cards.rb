@@ -2,8 +2,9 @@
 
 FactoryGirl.define do
   factory :card do
-    deck_id 1
-    name "MyString"
+    #deck_id 1
+    association :deck
+    name "Numbered_Card"
     card_type "numeric"
     status "in_deck"
     owner 0

@@ -8,9 +8,13 @@
 </head>
 <body>
  
+ <div class="container-fluid">
 
  <p class="notice"><%= notice %></p>
  <p class="alert"><%= alert %></p>
+
+<p><font color="red"> Controller: <%=controller.controller_name%> - Action: <%=controller.action_name%></font></p>
+
 
 <% if user_signed_in? %>
     	Logged in as <strong><%= current_user.email %></strong>.
@@ -22,9 +26,10 @@
     <% end %>
 
 
-<p><font color="red"> Controller: <%=controller.controller_name%> - Action: <%=controller.action_name%></font></p>
+
 
 <%= yield %>
 
+ </div>
 </body>
 </html>

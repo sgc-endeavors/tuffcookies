@@ -5,12 +5,13 @@ Tuffcookies::Application.routes.draw do
 
   
 
-  root :to => 'players#show'
+  root :to => 'users#landing_page'
 
   resources :games
   resources :players
   resources :cards
   resources :decks
+  resources :users, only: [:show]
   
 
 
