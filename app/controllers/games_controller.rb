@@ -7,7 +7,7 @@ class GamesController < ApplicationController
     @game = Game.where(user_id: @user.id).last
     @deck = Deck.where(game_id: @game.id).first
     @card = Card.where(deck_id: @deck.id).first
-    @player = Player.where(game_id: @game.id).first
+    @players = Player.where(game_id: @game.id)
   end
 
   def update

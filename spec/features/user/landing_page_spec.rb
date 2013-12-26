@@ -27,10 +27,13 @@ describe "users#landing_page" do
 				Game.last.user_id.should == new_user.id
 			end
 
-			it "triggers the creation of players for the game" do
-				Player.last.name.should == new_user.player_name
-				Player.last.game_id.should == Game.last.id
-				#needs to create 4 other players
+			it "triggers the creation of the user as a player for the game" do
+				Player.first.name.should == new_user.player_name
+				Player.first.game_id.should == Game.last.id
+			end
+
+			it "triggers the creation of 4 total players for the game" do
+				Player.where(game_id: Game.last.id).count.should == 4
 			end
 
 			it "triggers the creation of a deck for the game" do
