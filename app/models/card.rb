@@ -2,7 +2,7 @@ class Card < ActiveRecord::Base
   attr_accessible :card_type, :deck_id, :name, :order_in_deck, :owner, :status
   belongs_to :deck
 
-  def self.create_numeric_cards(deck_id)
+  def self.generate_numeric_cards(deck_id)
   	for i in 1..13
 			for each in 1..4
 				Card.create_and_save_card("#{i}", "numeric", deck_id)
@@ -17,7 +17,7 @@ class Card < ActiveRecord::Base
 		end
   end
 
-  def self.create_action_cards(deck_id)
+  def self.generate_action_cards(deck_id)
   	for i in 1..2
 			Card.create_and_save_card("reverse", "action_card", deck_id)
 			# new_action_card = Card.new

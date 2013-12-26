@@ -22,13 +22,12 @@ describe "users#landing_page" do
 
 		context "the user presses 'Play'" do
 			before(:each) { click_on("Play") }
-#			let(:new_game) { FactoryGirl.create(:game, user_i)}
 
 			it "triggers the creation of a new game for the user" do
 				Game.last.user_id.should == new_user.id
 			end
 
-			it "triggers the creation of a players for the game" do
+			it "triggers the creation of players for the game" do
 				Player.last.name.should == new_user.player_name
 				Player.last.game_id.should == Game.last.id
 				#needs to create 4 other players
@@ -49,6 +48,14 @@ describe "users#landing_page" do
 			it "triggers the creation of 2 reverse cards for the deck for the game" do
 				Card.where(deck_id: Deck.last.id).where(name: "reverse").count.should == 2
 			end
+
+			# it "shuffles the cards for the deck by assigning an 'order_in_deck' to the cards" do
+			# 	new_deck
+			# 	count = 0
+			# 	cards = Card.where(deck_id: deck_id)
+			# 	cards.each { |card | count += card.order_in_deck }
+			# 	count.should == 1485
+			# end
 
 			it "routes the user to the game's show path" do
 				current_path.should == game_path(Game.last.id)

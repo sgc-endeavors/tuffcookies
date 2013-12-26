@@ -7,26 +7,28 @@ describe Card do
  		FactoryGirl.create(:card).should be_valid
  	end
 
- 	#CREATE NUMERIC CARDS - creates numbered cards for the deck
- 	it { Card.should respond_to(:create_numeric_cards) }
+ 	#GENERATE NUMERIC CARDS - creates multiple instances of numbered cards for the deck
+ 	it { Card.should respond_to(:generate_numeric_cards) }
  	
- 	describe "#create_numeric_cards" do
+ 	describe "#generate_numeric_cards" do
  		let(:deck) { FactoryGirl.create(:deck) }
  		it "creates 52 numbered cards for the deck" do
- 			Card.create_numeric_cards(deck.id)
+ 			Card.generate_numeric_cards(deck.id)
  			Card.where(deck_id: deck.id).count.should == 52
  		end
  	end
 
- 	#CREATE ACTION CARDS - creates action cards for the deck
- 	it { Card.should respond_to(:create_action_cards) }
+ 	#GENERATE ACTION CARDS - creates  multiple instances of action cards for the deck
+ 	it { Card.should respond_to(:generate_action_cards) }
 
- 	describe "#create_action_cards" do
+ 	describe "#generate_action_cards" do
  		let(:deck) { FactoryGirl.create(:deck) }
  		it "creates 2 'reverse' action cards for the deck" do
- 			Card.create_action_cards(deck.id)
+ 			Card.generate_action_cards(deck.id)
  			Card.where(deck_id: deck.id).where(name: "reverse").count.should == 2
  		end
  	end
 
+ 	#CREATE AND SAVE CARD - creates a specified card and adds it to the d'base
+ 	it { Card.should respond_to(:create_and_save_card) }
 end
