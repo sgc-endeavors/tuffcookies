@@ -36,6 +36,7 @@ class Card < ActiveRecord::Base
   	card.card_type = card_type
   	card.status = "in_deck"
   	card.owner = 0
+  	card.order_in_deck = 0
   	card.deck_id = deck_id
   	card.save! 
   end

@@ -52,12 +52,25 @@ describe "users#landing_page" do
 				Card.where(deck_id: Deck.last.id).where(name: "reverse").count.should == 2
 			end
 
-			# it "shuffles the cards for the deck by assigning an 'order_in_deck' to the cards" do
-			# 	new_deck
-			# 	count = 0
-			# 	cards = Card.where(deck_id: deck_id)
-			# 	cards.each { |card | count += card.order_in_deck }
-			# 	count.should == 1485
+			#context "deck has not yet been shuffled" do
+				it "shuffles the cards for the deck by assigning an 'order_in_deck' to the cards" do
+					deck = Deck.last
+					count = 0
+					cards = Card.where(deck_id: deck.id)
+					cards.each { |card | count += card.order_in_deck }
+					count.should == (cards.count * (cards.count + 1))/2
+				end
+			#end
+
+				it "flips the first card in the deck" do
+					deck = Deck.last
+					Card.where(deck_id: deck.id).where(status: "in_deck").order(:order_in_deck).first.should == Card.where(deck_id: deck.id).where(order_in_deck: 2).first
+				end
+
+			# context "deck has already been shuffled" do
+			# 	it "does not shuffle the deck" do
+			# 		#should_not call(:shuffle_deck)
+			# 	end
 			# end
 
 			it "routes the user to the game's show path" do
