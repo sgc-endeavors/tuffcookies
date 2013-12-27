@@ -14,10 +14,7 @@ describe "users#landing_page" do
 		let(:new_user) { FactoryGirl.create(:user) }
 
 		before(:each) do 
-			click_on("Login")
-			fill_in "Email", with: new_user.email
-			fill_in "Password", with: new_user.password
-			click_on("Sign in")
+			login_user(new_user)
 		end
 
 		context "the user presses 'Play'" do
@@ -52,7 +49,7 @@ describe "users#landing_page" do
 				Card.where(deck_id: Deck.last.id).where(name: "reverse").count.should == 2
 			end
 
-			#context "deck has not yet been shuffled" do
+			context "deck has not yet been shuffled" do
 				it "shuffles the cards for the deck by assigning an 'order_in_deck' to the cards" do
 					deck = Deck.last
 					count = 0
@@ -60,26 +57,31 @@ describe "users#landing_page" do
 					cards.each { |card | count += card.order_in_deck }
 					count.should == (cards.count * (cards.count + 1))/2
 				end
-			#end
-
-				it "flips the first card in the deck" do
-					deck = Deck.last
-					Card.where(deck_id: deck.id).where(status: "in_deck").order(:order_in_deck).first.should == Card.where(deck_id: deck.id).where(order_in_deck: 2).first
-				end
-
-			# context "deck has already been shuffled" do
-			# 	it "does not shuffle the deck" do
-			# 		#should_not call(:shuffle_deck)
-			# 	end
-			# end
-
-			it "routes the user to the game's show path" do
-				current_path.should == game_path(Game.last.id)
 			end
 
+			context "deck has been shuffled and the next card in deck is flipped" do
+				let(:deck) { FactoryGirl.create(:deck) }
+				before(:each) do
+					FactoryGirl.create(:card, name: "Card 1", deck_id: deck.id, order_in_deck: 1)
+					50.times { FactoryGirl.create(:card, deck_id: deck.id) }
+				end
+				
+				it "does not reshuffle the deck" do
+					visit edit_deck_path(deck.id)
+					Card.where(deck_id: deck.id).where(name: "Card 1").first.order_in_deck.should == 1
+				end
+			end
 
+			it "flips the next card in the deck" do
+				deck = Deck.last
+				Card.where(deck_id: deck.id).where(status: "in_deck").order(:order_in_deck).first.should == Card.where(deck_id: deck.id).where(order_in_deck: 2).first
+			end
 
+			it "routes the user to the game's show path" do
+				current_path.should == new_turn_path(Game.last.id)
+			end
 		end
+		
 		context "the user presses 'My Record'" do
 			before(:each) { click_on("My Record") }
 			it "routes the user to the user's show page" do				

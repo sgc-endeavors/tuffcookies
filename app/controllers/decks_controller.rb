@@ -18,9 +18,14 @@ class DecksController < ApplicationController
 
 	def update
 		deck = Deck.find(params[:id])
-		deck.shuffle_deck
+		
+		if Card.where(deck_id: deck.id).first.order_in_deck == 0
+			deck.shuffle_deck
+		end
+
 		deck.flip_card
-		redirect_to game_path(Deck.find(params[:id]).game.id)
+
+		redirect_to new_turn_path(Deck.find(params[:id]).game.id)
 	end
 
 end

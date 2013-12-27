@@ -6,13 +6,6 @@ class Card < ActiveRecord::Base
   	for i in 1..13
 			for each in 1..4
 				Card.create_and_save_card("#{i}", "numeric", deck_id)
-				# new_card = Card.new
-				# new_card.name = "#{i}"
-				# new_card.card_type = "numeric"
-				# new_card.status = "in_deck"
-				# new_card.owner = 0
-				# new_card.deck_id = deck_id
-				# new_card.save!
 			end
 		end
   end
@@ -20,13 +13,6 @@ class Card < ActiveRecord::Base
   def self.generate_action_cards(deck_id)
   	for i in 1..2
 			Card.create_and_save_card("reverse", "action_card", deck_id)
-			# new_action_card = Card.new
-			# new_action_card.name = "reverse"
-			# new_action_card.card_type = "action_card"
-			# new_action_card.status = "in_deck"
-			# new_action_card.owner = 0
-			# new_action_card.deck_id = deck_id
-			# new_action_card.save!
  		end
   end
 
@@ -40,6 +26,4 @@ class Card < ActiveRecord::Base
   	card.deck_id = deck_id
   	card.save! 
   end
-
-
 end

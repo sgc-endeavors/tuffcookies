@@ -4,6 +4,15 @@ require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'rspec/autorun'
 
+
+def login_user(new_user)
+  visit root_path
+  click_on("Login")
+  fill_in "Email", with: new_user.email
+  fill_in "Password", with: new_user.password
+  click_on("Sign in")
+end
+
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }

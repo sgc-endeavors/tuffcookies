@@ -1,0 +1,12 @@
+<h1>Tuff Cookies</h1>
+<br>
+
+<br> By the time this view is generated, a game,deck,players, and cards have been created.<br><br>
+Username : <%=@user.player_name%><br>
+GameID : <%=@game.id%><br>
+DeckID : < %=@deck.id%><br>
+Card In Play: < %=@card.name%><br>
+Players: <br>
+	< %@players.each do |player| %>
+		< %=player.name%> - < %=player.player_order%><br>
+		< %end%>

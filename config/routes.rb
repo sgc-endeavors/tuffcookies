@@ -1,6 +1,18 @@
 Tuffcookies::Application.routes.draw do
   
   
+  get "turns/show"
+
+  get "turns/update"
+
+  get "turns/new"
+
+  get "turns/destroy"
+
+  get "turns/create"
+
+  get "turns/edit"
+
   devise_for :users
 
   
@@ -11,6 +23,7 @@ Tuffcookies::Application.routes.draw do
   resources :players
   resources :cards
   resources :decks
+  resources :turns
   resources :users, only: [:show]
   
 
